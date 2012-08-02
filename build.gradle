@@ -1,0 +1,21 @@
+apply plugin: 'idea'
+apply plugin: 'groovy'
+
+repositories {
+	mavenCentral()
+    mavenRepo name: "Sonatype Snapshots", url: "https://oss.sonatype.org/content/repositories/snapshots/"
+}
+
+dependencies {
+	groovy 'org.codehaus.groovy:groovy-all:2.0.1'
+	compile('org.codehaus.groovy.modules.http-builder:http-builder:0.5.2') {
+		exclude module: 'groovy-all'
+        exclude module: 'groovy'
+	}
+    testCompile "junit:junit:4.10"
+    testCompile "org.spockframework:spock-core:0.7-groovy-2.0-SNAPSHOT"
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = "1.0"
+}
